@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
 
 const SignIn = (props) => {
+
+    const navigate = useNavigate()
 
   const initialState = {
     username: '',
@@ -16,6 +19,7 @@ const SignIn = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
     props.handleSignIn(formData)
+    navigate('/')
   }
 
   return (
