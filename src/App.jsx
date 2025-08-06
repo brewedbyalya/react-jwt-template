@@ -37,8 +37,8 @@ const App = () => {
       <NavBar user={user} handleSignOut={handleSignOut} />
       <Routes>
           <Route path='/' element={<h1>Hello world!</h1>} />
-          <Route path='/sign-up' element={<SignUp handleSignUp={handleSignUp} />} />
-          <Route path='/sign-in' element={<SignIn handleSignIn={handleSignIn} />} />
+          <Route path='/sign-up' element={<SignUp handleSignUp={handleSignUp} user={user}/>} />
+          <Route path='/sign-in' element={<SignIn handleSignIn={handleSignIn} user={user}/>} />
           <Route path='*' element={<h1>404</h1>} />
     </Routes>
     </>

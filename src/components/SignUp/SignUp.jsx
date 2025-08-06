@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
+
 const SignUp = (props) => {
 
   const navigate = useNavigate()
@@ -12,6 +13,11 @@ const SignUp = (props) => {
 
   const [formData, setFormData] = useState(initialState)
   const [error, setError] = useState(null)
+
+  useEffect(()=> {
+      if (props.user)
+      {navigate('/')}
+  }, [props.user])
 
   const handleChange = (evt) => {
     setFormData({...formData, [evt.target.name]: evt.target.value})
@@ -36,6 +42,7 @@ const SignUp = (props) => {
   return (
     <main>
       <h1>Sign up Form</h1>
+      {error}
       <form onSubmit={handleSubmit}>
         <label>Username:</label>
         <input type="text" name='username' onChange={handleChange} />
