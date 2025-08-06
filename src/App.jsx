@@ -1,11 +1,18 @@
+import './App.css';
 import NavBar from './components/NavBar/NavBar';
+import {Route , Routes} from 'react-router' ;
+import SignUpForm from './components/SignUpForm/SignUpForm'
 
 const App = () => {
   
   return (
     <>
       <NavBar />
-      <h1>Hello, friend!</h1>
+      <Routes>
+     <Route path= '/' element={<h1>Hello world.</h1>}/>
+     <Route path='sign-up' element= {<SignUpForm/>} />
+     <Route path= '*' element={<h1>404</h1>}/>
+     </Routes>
     </>
   );
 };
