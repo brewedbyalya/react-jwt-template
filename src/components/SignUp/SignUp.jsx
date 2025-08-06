@@ -11,15 +11,20 @@ const SignUp = (props) => {
   }
 
   const [formData, setFormData] = useState(initialState)
+  const [error, setError] = useState(null)
 
   const handleChange = (evt) => {
     setFormData({...formData, [evt.target.name]: evt.target.value})
   }
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault()
-    props.handleSignUp(formData)
-    navigate('/')
+    const result = await props.handleSignUp(formData)
+    if (result.success) {
+    navigate('/') }
+    else {
+      setError(result.message)
+    }
   }
 
   let formIsInvalid = true;

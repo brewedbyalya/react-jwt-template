@@ -10,16 +10,18 @@ const signUp = async (formData) => {
       body: JSON.stringify(formData)
     })
     const data = await res.json()
+
+    if (!res.ok) throw new Error(data.err|| `Something is wrong.`)
+
     if (data.token) {
-      // save the token in local storage
       localStorage.setItem('token', data.token)
-      // returning the user info to use in our app
       const decodedToken = JSON.parse(atob(data.token.split('.')[1]))
       return decodedToken
     }
 
   } catch (err) {
     console.log(err)
+    throw err
   }
 }
 
