@@ -8,6 +8,7 @@ const SignIn = (props) => {
   const initialState = {
     username: '',
     password: '',
+    passwordConf: '',
   }
 
   const [formData, setFormData] = useState(initialState)
@@ -22,6 +23,12 @@ const SignIn = (props) => {
     navigate('/')
   }
 
+    let formIsInvalid = true;
+
+  if (formData.username && formData.password && formData.password === formData.passwordConf) {
+    formIsInvalid = false;
+  }
+
   return (
     <main>
       <h1>Sign In Form</h1>
@@ -32,7 +39,10 @@ const SignIn = (props) => {
         <label>Password:</label>
         <input type="password" name='password' onChange={handleChange} />
         <br />
-        <button type="submit">Sign In</button>
+        <label>Confirm Password:</label>
+        <input type="password" name='passwordConf' onChange={handleChange} />
+        <br />
+        <button type="submit" disabled={formIsInvalid}>Sign In</button>
       </form>
     </main>
   )
